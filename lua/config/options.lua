@@ -9,6 +9,7 @@ vim.opt.smartindent = true
 vim.opt.autoindent = true
 
 vim.g.autoformat = false
+vim.g.snacks_animate = false
 
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "lua" },
