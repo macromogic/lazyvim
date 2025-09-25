@@ -26,7 +26,7 @@ return {
 
       -- 判断是否是 CMake 项目（根目录有 CMakeLists.txt）
       local function is_cmake_project()
-        return vim.fn.findfile("CMakeLists.txt", ".;") ~= ""  -- 在当前目录及父目录查找 CMakeLists.txt
+        return vim.fn.findfile("CMakeLists.txt", vim.loop.cwd()) ~= ""
       end
 
       -- 判断并绑定快捷键
