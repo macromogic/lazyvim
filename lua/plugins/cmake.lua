@@ -20,7 +20,8 @@ return {
         vim.keymap.set("n", "<leader>cb", "<cmd>CMakeBuild<CR>", { desc = "CMake Build" })
         vim.keymap.set("n", "<leader>cR", "<cmd>CMakeRun<CR>", { desc = "CMake Run" })
         vim.keymap.set("n", "<leader>cc", "<cmd>CMakeClean<CR>", { desc = "CMake Clean" })
-        vim.keymap.set("n", "<leader>ct", "<cmd>CMakeSelectBuildType<CR>", { desc = "CMake Select Build Type" })
+        vim.keymap.set("n", "<leader>ct", "<cmd>CMakeRunTest<CR>", { desc = "CMake Run Test" })
+        vim.keymap.set("n", "<leader>cT", "<cmd>CMakeSelectBuildType<CR>", { desc = "CMake Select Build Type" })
         vim.keymap.set("n", "<leader>co", "<cmd>CMakeOpen<CR>", { desc = "Open CMake Console" })
       end
 
