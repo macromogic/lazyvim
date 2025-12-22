@@ -14,6 +14,16 @@ return {
           },
           filetypes = { "c", "cpp", "cuda" },
         },
+        pyright = {
+          settings = {
+            python = {
+              analysis = {
+                typeCheckingMode = "basic",
+                autoImportCompletions = true,
+              },
+            },
+          },
+        },
       },
     },
   },

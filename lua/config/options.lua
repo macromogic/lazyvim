@@ -9,7 +9,7 @@ vim.opt.smartindent = true
 vim.opt.autoindent = true
 
 vim.g.autoformat = false
-vim.g.snacks_animate = false
+vim.g.python3_host_prog = vim.fn.exepath("python3")
 
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "lua" },
