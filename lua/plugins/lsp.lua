@@ -24,7 +24,22 @@ return {
             },
           },
         },
+        rust_analyzer = {
+          settings = {
+            ["rust-analyzer"] = {
+              cargo = {
+                allFeatures = true,
+              },
+              procMacro = {
+                enable = true,
+              },
+            },
+          },
+        },
       },
     },
+  },
+  {
+    "rust-analyzer/rust-analyzer",
   },
 }
