@@ -39,7 +39,4 @@ return {
       },
     },
   },
-  {
-    "rust-analyzer/rust-analyzer",
-  },
 }
