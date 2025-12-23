@@ -40,7 +40,7 @@
   "persistence.nvim": { "branch": "main", "commit": "b20b2a7887bd39c1a356980b45e03250f3dce49c" },
   "plenary.nvim": { "branch": "master", "commit": "b9fd5226c2f76c951fc8ed5923d85e4de065e509" },
   "project.nvim": { "branch": "main", "commit": "8c6bad7d22eef1b71144b401c9f74ed01526a4fb" },
-  "rust-analyzer": { "branch": "master", "commit": "e14db0f5f83e40b711d342469a3452d5985e9e6d" },
+  "rust-analyzer": { "branch": "master", "commit": "be7d98ab08f6122023c8b1e98f6c4f8857cf8aac" },
   "snacks.nvim": { "branch": "main", "commit": "fe7cfe9800a182274d0f868a74b7263b8c0c020b" },
   "swenv.nvim": { "branch": "main", "commit": "4157de2619ec2e5c61c103fb6517845a0e04e558" },
   "todo-comments.nvim": { "branch": "main", "commit": "31e3c38ce9b29781e4422fc0322eb0a21f4e8668" },
