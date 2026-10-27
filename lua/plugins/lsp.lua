@@ -4,13 +4,12 @@ return {
     opts = {
       servers = {
         clangd = {
+          mason = false,
           cmd = {
-            "clangd",
+            vim.fn.expand("~/.nix-profile/bin/clangd"),
             "--background-index",
             "--completion-style=detailed",
             "--header-insertion=iwyu",
-            "--query-driver=**",
-            "--compile-commands-dir=build"
           },
           filetypes = { "c", "cpp", "cuda" },
         },
