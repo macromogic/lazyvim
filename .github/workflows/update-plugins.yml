@@ -1,0 +1,54 @@
+# Mondays: move each plugin in lazy-lock.json to where its branch stood 7
+# days ago (see scripts/update-plugins.py). Machines pick the lock up with
+# their daily nix-config autoupdate, which restores plugins to it.
+name: Update plugins
+
+on:
+  schedule:
+    - cron: "37 2 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-plugins
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    env:
+      XDG_CONFIG_HOME: ${{ github.workspace }}/config
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          path: config/nvim
+
+      - uses: cachix/install-nix-action@13d8dd58da0234aa297dedd986986ccb8e7f3e24 # v31.11.1
+        with:
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+
+      # The Neovim the machines run: nixpkgs as pinned by nix-config.
+      - name: Install Neovim
+        run: |
+          rev=$(curl -fsSL https://raw.githubusercontent.com/macromogic/nix-config/main/flake.lock |
+            jq -r .nodes.nixpkgs.locked.rev)
+          nix build --out-link "$RUNNER_TEMP/neovim" "github:NixOS/nixpkgs/$rev#neovim"
+          echo "$RUNNER_TEMP/neovim/bin" >> "$GITHUB_PATH"
+
+      - name: Update
+        working-directory: config/nvim
+        run: python3 scripts/update-plugins.py --summary "$RUNNER_TEMP/summary"
+
+      - name: Commit
+        working-directory: config/nvim
+        run: |
+          if [ ! -s "$RUNNER_TEMP/summary" ]; then
+            echo "Nothing to update."
+            exit 0
+          fi
+          { echo "chore: update plugins"; echo; cat "$RUNNER_TEMP/summary"; } > "$RUNNER_TEMP/message"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -F "$RUNNER_TEMP/message" lazy-lock.json
+          git push
